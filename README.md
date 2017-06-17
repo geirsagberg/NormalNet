@@ -2,6 +2,11 @@
 
 .NET Standard Library providing normalization of entities for easier API consumption.
 
+- [x] Normalize simple entities
+- [x] Normalize nested entities
+- [x] Normalize list entities
+- [ ] Normalize entities without ID
+
 Example:
 
 ```csharp
