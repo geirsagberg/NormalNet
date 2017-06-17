@@ -46,3 +46,5 @@ var expectation = new Dictionary<string, object> {
 };
 normalized.ShouldBeEquivalentTo(expectation);
 ```
+
+See [NormalNet.Test](NormalNet.Test) for more examples.
