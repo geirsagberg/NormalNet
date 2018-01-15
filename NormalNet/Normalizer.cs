@@ -17,6 +17,7 @@ namespace NormalNet
                     type = type.GenericTypeArguments[0];
                     continue;
                 }
+
                 return typeInfo.IsPrimitive || typeInfo.IsEnum || type == typeof(string) || type == typeof(decimal);
             }
         }
@@ -41,7 +42,8 @@ namespace NormalNet
             return dictionary;
         }
 
-        private static void AddItems(object obj, Dictionary<string, Dictionary<string, object>> entitiesByType, PropertyInfo property, Dictionary<string, object> dictionary)
+        private static void AddItems(object obj, Dictionary<string, Dictionary<string, object>> entitiesByType,
+            PropertyInfo property, Dictionary<string, object> dictionary)
         {
             var enumerableType = property.PropertyType.GetTypeInfo().ImplementedInterfaces
                 .First(IsEnumerable).GetTypeInfo();
@@ -64,13 +66,15 @@ namespace NormalNet
         }
 
         private static object AddPropertyAsDictionary(object obj,
-            Dictionary<string, Dictionary<string, object>> entitiesByType, PropertyInfo property, Dictionary<string, object> dictionary)
+            Dictionary<string, Dictionary<string, object>> entitiesByType, PropertyInfo property,
+            Dictionary<string, object> dictionary)
         {
             var propertyValue = property.GetValue(obj);
             var idProperty = propertyValue.GetType().GetRuntimeProperty("Id");
             if (idProperty == null) {
                 throw new NotImplementedException();
             }
+
             var id = idProperty.GetValue(propertyValue);
             var propertyTypeName = property.PropertyType.Name;
             EnsureDictionary(entitiesByType, propertyTypeName);
