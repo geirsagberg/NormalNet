@@ -24,6 +24,46 @@ namespace NormalNet.Test
         }
 
         [Fact]
+        public void Can_normalize_list()
+        {
+            var list = new List<OrderLine> {
+                new OrderLine {
+                    Id = 1,
+                    Code = "AB"
+                },
+                new OrderLine {
+                    Id = 2,
+                    Code = "XZ"
+                }
+            };
+
+            var normalized = new Normalizer().Normalize(list);
+
+            normalized.ShouldBeEquivalentTo(new Dictionary<string, object> {
+                {
+                    "Entities", new Dictionary<string, object> {
+                        {
+                            "OrderLine", new Dictionary<string, object> {
+                                {
+                                    "1", new Dictionary<string, object> {
+                                        {"Id", 1},
+                                        {"Code", "AB"}
+                                    }
+                                }, {
+                                    "2", new Dictionary<string, object> {
+                                        {"Id", 2},
+                                        {"Code", "XZ"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {"Result", new[] {1, 2}}
+            });
+        }
+
+        [Fact]
         public void Can_normalize_model_with_list()
         {
             var viewModel = new ViewModel {

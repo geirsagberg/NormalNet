@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace NormalNet
 {
-    public class Normalizer
+    public class Normalizer : INormalizer
     {
         private static bool IsSimple(Type type)
         {
@@ -83,15 +83,21 @@ namespace NormalNet
             dictionary[property.Name + "Id"] = id;
             return id;
         }
-
+        
         public Dictionary<string, object> Normalize(object obj)
         {
             var type = obj.GetType();
+            var entitiesByType = new Dictionary<string, Dictionary<string, object>>();
 
-            var properties = type.GetRuntimeProperties();
             var result = new Dictionary<string, object>();
 
-            var entitiesByType = new Dictionary<string, Dictionary<string, object>>();
+            //if (IsEnumerable(type))
+            //{
+            //    AddItems(obj, entitiesByType, result);
+            //}
+
+            var properties = type.GetRuntimeProperties();
+
 
             foreach (var property in properties) {
                 if (IsSimple(property.PropertyType)) {

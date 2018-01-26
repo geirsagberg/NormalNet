@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <Authors>Geir Sagberg</Authors>
+    <Company />
+    <Copyright>Geir Sagberg</Copyright>
+    <PackageLicenseUrl>https://github.com/geirsagberg/NormalNet/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/geirsagberg/NormalNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/geirsagberg/NormalNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
